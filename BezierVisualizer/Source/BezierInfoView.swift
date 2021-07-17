@@ -2,22 +2,32 @@ import SwiftUI
 import UIKit
 
 struct BezierInfoView: View {
+  @State private var p1: String = ""
+  @State private var p2: String = ""
+  @State private var c1: String = ""
+  @State private var c2: String = ""
+  @State private var l: String = ""
+
   var body: some View {
     VStack(alignment: .leading) {
-      InfoRowView(title: "P1")
-      InfoRowView(title: "P2")
-      InfoRowView(title: "C1")
-      InfoRowView(title: "C2")
-      InfoRowView(title: "L")
+      InfoRowView(title: "P1", value: $p1)
+      InfoRowView(title: "P2", value: $p2)
+      InfoRowView(title: "C1", value: $c1)
+      InfoRowView(title: "C2", value: $c2)
+      InfoRowView(title: "L", value: $l)
     }
   }
 }
 
 struct InfoRowView: View {
   let title: String
+  @Binding var value: String
 
   var body: some View {
-    Text(title)
+    HStack(spacing: 12) {
+      Text(title)
+      Text(value)
+    }
   }
 }
 
