@@ -2,7 +2,7 @@ import UIKit
 
 final class BezierPathView: UIView {
   override class var layerClass: AnyClass {
-    return CAShapeLayer.self
+    CAShapeLayer.self
   }
 
   var points: Bezier.Points = .zero {

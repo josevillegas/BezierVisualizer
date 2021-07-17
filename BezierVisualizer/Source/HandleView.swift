@@ -3,7 +3,7 @@ import UIKit
 final class HandleView: UIView {
   var didDrag: (CGPoint) -> () = { _ in }
   var position: CGPoint {
-    get { return frame.origin }
+    get { frame.origin }
     set { frame = CGRect(origin: newValue, size: .zero) }
   }
 
@@ -35,7 +35,7 @@ final class HandleView: UIView {
   }
 
   override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-    return CGRect(x: -22, y: -22, width: 44, height: 44).contains(point)
+    CGRect(x: -22, y: -22, width: 44, height: 44).contains(point)
   }
 
   @objc private func dragged(_ recognizer: UIPanGestureRecognizer) {

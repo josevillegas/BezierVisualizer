@@ -15,7 +15,7 @@ enum Bezier {
     var c2: CGPoint
 
     static var zero: Points {
-      return Points(p1: .zero, p2: .zero, c1: .zero, c2: .zero)
+      Points(p1: .zero, p2: .zero, c1: .zero, c2: .zero)
     }
 
     mutating func setPoint(_ point: Bezier.Point, for value: CGPoint) {
@@ -61,12 +61,12 @@ enum Bezier {
   /// t2 and t3 are precalculated values for t² and t³.
   static func point(t: CGFloat, t2: CGFloat, t3: CGFloat, p1: CGFloat, p2: CGFloat, c1: CGFloat, c2: CGFloat) -> CGFloat {
     // See derivation below.
-    return p1 - 3 * t * (p1 - c1) + 3 * t2 * (p1 - 2 * c1 + c2) - t3 * (p1 - 3 * c1 + 3 * c2 - p2)
+    p1 - 3 * t * (p1 - c1) + 3 * t2 * (p1 - 2 * c1 + c2) - t3 * (p1 - 3 * c1 + 3 * c2 - p2)
   }
 
   /// Returns the length of a bezier curve broken up into segments at the given interval count.
   static func length(points: Bezier.Points, intervals: Int) -> CGFloat {
-    return length(p1: points.p1, p2: points.p2, c1: points.c1, c2: points.c2, intervals: intervals)
+    length(p1: points.p1, p2: points.p2, c1: points.c1, c2: points.c2, intervals: intervals)
   }
 
   /// Returns the length of a bezier curve broken up into segments at the given interval count.
@@ -82,7 +82,7 @@ enum Bezier {
 
   /// Returns the points on a bezier curve for the given intervals.
   static func intervalPoints(p1: CGPoint, p2: CGPoint, c1: CGPoint, c2: CGPoint, intervals: [CGFloat]) -> [CGPoint] {
-    return intervals.map { point(t: $0, p1: p1, p2: p2, c1: c1, c2: c2) }
+    intervals.map { point(t: $0, p1: p1, p2: p2, c1: c1, c2: c2) }
   }
 
   /// Returns interval values from 0 to 1 for the given interval count.
@@ -94,7 +94,7 @@ enum Bezier {
 
   /// Returns the distance between two points.
   static func distance(_ p1: CGPoint, _ p2: CGPoint) -> CGFloat {
-    return sqrt(pow(p2.x - p1.x, 2) + pow(p2.y - p1.y, 2))
+    sqrt(pow(p2.x - p1.x, 2) + pow(p2.y - p1.y, 2))
   }
 
   /// Given a set of values, returns these values as sequential pairs.

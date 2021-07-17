@@ -2,7 +2,7 @@ import UIKit
 
 final class PointView: UIView {
   var position: CGPoint {
-    get { return frame.origin }
+    get { frame.origin }
     set { frame = CGRect(origin: newValue, size: .zero) }
   }
 

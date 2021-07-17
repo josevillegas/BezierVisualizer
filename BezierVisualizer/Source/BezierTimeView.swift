@@ -2,7 +2,7 @@ import UIKit
 
 final class BezierTimeView: UIView {
   override class var layerClass: AnyClass {
-    return CAShapeLayer.self
+    CAShapeLayer.self
   }
 
   var time: CGFloat = 0 {

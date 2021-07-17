@@ -1,5 +1,5 @@
 import XCTest
-@testable import Bezier
+@testable import BezierVisualizer
 
 class BezierTests: XCTestCase {
   func test_timeIntervalsForDivisionCount() {
@@ -22,6 +22,6 @@ class BezierTests: XCTestCase {
   }
 
   private func pairValues<T>(_ pair: (T, T)) -> [T] {
-    return [pair.0, pair.1]
+    [pair.0, pair.1]
   }
 }
