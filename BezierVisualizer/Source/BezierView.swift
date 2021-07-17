@@ -5,9 +5,10 @@ struct BezierVisualizerView: View {
   var body: some View {
     VStack(spacing: 0) {
       BezierView()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
       Divider()
-      BezierTimeControlView()
-      BezierInfoView()
+      BezierControlsView()
+        .padding(EdgeInsets(top: 12, leading: 24, bottom: 0, trailing: 24))
     }
   }
 }
@@ -19,7 +20,18 @@ struct BezierView: View {
       BezierTimeView()
       BezierHandlesView()
     }
-    .frame(maxWidth: .infinity, maxHeight: .infinity)
+  }
+}
+
+struct BezierControlsView: View {
+  var body: some View {
+    VStack(spacing: 16) {
+      BezierTimeControlView()
+      HStack {
+        BezierInfoView()
+        Spacer()
+      }
+    }
   }
 }
 

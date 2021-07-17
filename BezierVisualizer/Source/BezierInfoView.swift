@@ -3,7 +3,21 @@ import UIKit
 
 struct BezierInfoView: View {
   var body: some View {
-    Text("Bezier Info View")
+    VStack(alignment: .leading) {
+      InfoRowView(title: "P1")
+      InfoRowView(title: "P2")
+      InfoRowView(title: "C1")
+      InfoRowView(title: "C2")
+      InfoRowView(title: "L")
+    }
+  }
+}
+
+struct InfoRowView: View {
+  let title: String
+
+  var body: some View {
+    Text(title)
   }
 }
 

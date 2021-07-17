@@ -13,7 +13,6 @@ struct BezierTimeControlView: View {
       Toggle(isOn: $isOn, label: { Text("") })
         .labelsHidden()
     }
-    .padding(12)
   }
 }
 
