@@ -1,6 +1,13 @@
+import SwiftUI
 import UIKit
 
-final class BezierTimeView: UIView {
+struct BezierTimeView: View {
+  var body: some View {
+    Text("Bezier Time View")
+  }
+}
+
+final class BezierTimeView_: UIView {
   override class var layerClass: AnyClass {
     CAShapeLayer.self
   }

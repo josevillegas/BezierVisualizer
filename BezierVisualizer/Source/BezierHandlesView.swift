@@ -1,6 +1,13 @@
+import SwiftUI
 import UIKit
 
-final class BezierHandlesView: UIView {
+struct BezierHandlesView: View {
+  var body: some View {
+    Text("Bezier Handles View")
+  }
+}
+
+final class BezierHandlesView_: UIView {
   enum Action {
     case handleDidMove(Bezier.Point, CGPoint)
   }

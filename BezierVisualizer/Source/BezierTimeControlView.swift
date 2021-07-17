@@ -1,6 +1,13 @@
+import SwiftUI
 import UIKit
 
-final class BezierTimeControlView: UIView {
+struct BezierTimeControlView: View {
+  var body: some View {
+    Text("Bezier Time Control View")
+  }
+}
+
+final class BezierTimeControlView_: UIView {
   enum Action {
     case sliderDidChange(Float)
     case switchDidChange(isOn: Bool)

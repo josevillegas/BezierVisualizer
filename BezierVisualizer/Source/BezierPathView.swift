@@ -1,6 +1,13 @@
+import SwiftUI
 import UIKit
 
-final class BezierPathView: UIView {
+struct BezierPathView: View {
+  var body: some View {
+    Text("Bezier Path View")
+  }
+}
+
+final class BezierPathView_: UIView {
   override class var layerClass: AnyClass {
     CAShapeLayer.self
   }

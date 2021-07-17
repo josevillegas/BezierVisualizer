@@ -1,11 +1,48 @@
+import SwiftUI
 import UIKit
 
-final class BezierView: UIView {
-  private let pathView = BezierPathView()
-  private let timeView = BezierTimeView()
-  private let handlesView = BezierHandlesView()
-  private let timeControlView = BezierTimeControlView()
-  private let infoView = BezierInfoView()
+struct BezierVisualizerView: View {
+  var body: some View {
+    VStack(spacing: 0) {
+      BezierView()
+      Divider()
+      BezierTimeControlView()
+      BezierInfoView()
+    }
+  }
+}
+
+struct BezierView: View {
+  var body: some View {
+    Group {
+      BezierPathView()
+      BezierTimeView()
+      BezierHandlesView()
+    }
+    .frame(maxWidth: .infinity, maxHeight: .infinity)
+  }
+}
+
+final class BezierViewController: UIViewController {
+  override func loadView() {
+    let bezierView = BezierView_()
+    let points = Bezier.Points(
+      p1: CGPoint(x: 100, y: 400),
+      p2: CGPoint(x: 300, y: 400),
+      c1: CGPoint(x: 100, y: 200),
+      c2: CGPoint(x: 300, y: 200)
+    )
+    bezierView.setPoints(points)
+    view = bezierView
+  }
+}
+
+final class BezierView_: UIView {
+  private let pathView = BezierPathView_()
+  private let timeView = BezierTimeView_()
+  private let handlesView = BezierHandlesView_()
+  private let timeControlView = BezierTimeControlView_()
+  private let infoView = BezierInfoView_()
 
   init() {
     super.init(frame: .zero)
@@ -67,7 +104,7 @@ final class BezierView: UIView {
     handlesView.setPoints(points)
   }
 
-  private func update(_ action: BezierHandlesView.Action) {
+  private func update(_ action: BezierHandlesView_.Action) {
     switch action {
     case let .handleDidMove(point, value):
       pathView.points.setPoint(point, for: value)
@@ -76,7 +113,7 @@ final class BezierView: UIView {
     }
   }
 
-  private func update(_ action: BezierTimeControlView.Action) {
+  private func update(_ action: BezierTimeControlView_.Action) {
     switch action {
     case let .sliderDidChange(value): timeView.time = CGFloat(value)
     case let .switchDidChange(isOn): timeView.isHidden = !isOn

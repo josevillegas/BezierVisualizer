@@ -1,6 +1,13 @@
+import SwiftUI
 import UIKit
 
-final class BezierInfoView: UIView {
+struct BezierInfoView: View {
+  var body: some View {
+    Text("Bezier Info View")
+  }
+}
+
+final class BezierInfoView_: UIView {
   var points: Bezier.Points = .zero {
     didSet { update() }
   }
