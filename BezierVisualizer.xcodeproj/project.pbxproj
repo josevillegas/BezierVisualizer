@@ -14,7 +14,6 @@
 		828440182287C79900BDC512 /* BezierVisualizerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828440172287C79900BDC512 /* BezierVisualizerApp.swift */; };
 		8284401F2287C79A00BDC512 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8284401E2287C79A00BDC512 /* Assets.xcassets */; };
 		828440222287C79A00BDC512 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 828440202287C79A00BDC512 /* LaunchScreen.storyboard */; };
-		8284402A2287CBC000BDC512 /* HandleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828440292287CBC000BDC512 /* HandleView.swift */; };
 		82A93288229094C70046C5B3 /* Bezier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A93287229094C70046C5B3 /* Bezier.swift */; };
 		82A932902290D48C0046C5B3 /* BezierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A9328F2290D48C0046C5B3 /* BezierTests.swift */; };
 		82F9D5AE228A4D2500056EDA /* BezierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F9D5AD228A4D2500056EDA /* BezierView.swift */; };
@@ -41,7 +40,6 @@
 		8284401E2287C79A00BDC512 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		828440212287C79A00BDC512 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		828440232287C79A00BDC512 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		828440292287CBC000BDC512 /* HandleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandleView.swift; sourceTree = "<group>"; };
 		82880A3626A371040023D3C9 /* Common.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
 		82A93287229094C70046C5B3 /* Bezier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bezier.swift; sourceTree = "<group>"; };
 		82A9328D2290D48C0046C5B3 /* BezierVisualizerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BezierVisualizerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,7 +76,6 @@
 				8271415F2289190A00D8929E /* BezierHandlesView.swift */,
 				8249DFAA228E469C0030F95E /* BezierTimeView.swift */,
 				8271416122891B0C00D8929E /* BezierInfoView.swift */,
-				828440292287CBC000BDC512 /* HandleView.swift */,
 				8249DFAC228E51130030F95E /* PointView.swift */,
 				82A93287229094C70046C5B3 /* Bezier.swift */,
 			);
@@ -230,7 +227,6 @@
 				82F9D5AE228A4D2500056EDA /* BezierView.swift in Sources */,
 				8271416222891B0C00D8929E /* BezierInfoView.swift in Sources */,
 				828440182287C79900BDC512 /* BezierVisualizerApp.swift in Sources */,
-				8284402A2287CBC000BDC512 /* HandleView.swift in Sources */,
 				8249DFAB228E469C0030F95E /* BezierTimeView.swift in Sources */,
 				827141602289190A00D8929E /* BezierHandlesView.swift in Sources */,
 				82F9D5B0228A51D000056EDA /* BezierPathView.swift in Sources */,

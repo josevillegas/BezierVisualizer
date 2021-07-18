@@ -29,10 +29,11 @@ struct BezierView: View {
   @Binding var isTimeViewVisible: Bool
 
   var body: some View {
-    Group {
+    ZStack {
       BezierPathView(points: $points)
       if isTimeViewVisible {
         BezierTimeView(points: $points, time: $time)
+          .offset(CGSize(width: 0, height: 30.0))
       }
       BezierHandlesView(points: $points)
     }
