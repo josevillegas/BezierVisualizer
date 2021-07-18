@@ -11,7 +11,7 @@ struct BezierVisualizerApp: App {
 
 struct BezierVisualizerView: View {
   @State private var points: Bezier.Points = .zero
-  @State private var time: Float = 0
+  @State private var time: CGFloat = 0
   @State private var isTimeViewVisible = false
   @State private var pathViewSize: CGSize = .zero
 

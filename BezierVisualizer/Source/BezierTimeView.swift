@@ -3,18 +3,44 @@ import UIKit
 
 struct BezierTimeView: View {
   @Binding var points: Bezier.Points
-  @Binding var time: Float
+  @Binding var time: CGFloat
+
+  @State var pointPosition: CGPoint = .zero
+
+  init(points poimtsBinding: Binding<Bezier.Points>, time timeBinding: Binding<CGFloat>) {
+    _points = poimtsBinding
+    _time = timeBinding
+    let timePoints = points.timePoints(time: time)
+    _pointPosition = State(initialValue: Bezier.point(t: time, p1: timePoints.p21, p2: timePoints.p22))
+  }
 
   var body: some View {
-    Text("Time: \(time)")
+    ZStack {
+      PointView()
+        .position(pointPosition)
+    }
+      .onChange(of: time) { time in
+        if time > 0 && time < 1 {
+          let timePoints = points.timePoints(time: time)
+          pointPosition = Bezier.point(t: time, p1: timePoints.p21, p2: timePoints.p22)
+        } else if time <= 0 {
+          pointPosition = points.p1
+        } else {
+          pointPosition = points.p2
+        }
+      }
+  }
+}
+
+struct PointView: View {
+  var body: some View {
+    Circle()
+      .fill(Color(.sRGB, red: 0, green: 0.5, blue: 1, opacity: 1))
+      .frame(width: 8, height: 8)
   }
 }
 
 final class BezierTimeView_: UIView {
-  override class var layerClass: AnyClass {
-    CAShapeLayer.self
-  }
-
   var time: CGFloat = 0 {
     didSet {
       if time < 0 { time = 0 }
@@ -27,12 +53,8 @@ final class BezierTimeView_: UIView {
     didSet { update() }
   }
 
-  private let pointView = PointView()
-
   init() {
     super.init(frame: .zero)
-
-    addSubview(pointView)
 
     guard let layer = self.layer as? CAShapeLayer else { return }
     layer.fillColor = UIColor(white: 1, alpha: 0).cgColor
@@ -69,40 +91,6 @@ final class BezierTimeView_: UIView {
       let p22 = Bezier.point(t: time, p1: p12, p2: p13)
       path.move(to: p21)
       path.addLine(to: p22)
-
-      pointView.position = Bezier.point(t: time, p1: p21, p2: p22)
-    } else if time <= 0 {
-      pointView.position = p1
-    } else {
-      pointView.position = p2
     }
-
-    guard let layer = self.layer as? CAShapeLayer else { return }
-    layer.path = path.cgPath
-  }
-}
-
-final class PointView: UIView {
-  var position: CGPoint {
-    get { frame.origin }
-    set { frame = CGRect(origin: newValue, size: .zero) }
-  }
-
-  init() {
-    super.init(frame: .zero)
-
-    clipsToBounds = false
-
-    let size: CGFloat = 8
-    let sublayer = CALayer()
-    sublayer.frame = CGRect(x: -size / 2, y: -size / 2, width: size, height: size)
-    sublayer.backgroundColor = UIColor(red: 0, green: 0.5, blue: 1, alpha: 1).cgColor
-    sublayer.cornerRadius = size / 2
-
-    layer.addSublayer(sublayer)
-  }
-
-  required init?(coder aDecoder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
   }
 }

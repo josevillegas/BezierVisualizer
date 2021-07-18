@@ -2,7 +2,7 @@ import SwiftUI
 
 struct BezierView: View {
   @Binding var points: Bezier.Points
-  @Binding var time: Float
+  @Binding var time: CGFloat
   @Binding var isTimeViewVisible: Bool
   @Binding var pathViewSize: CGSize
 
@@ -26,7 +26,7 @@ struct BezierView: View {
 
 struct BezierControlsView: View {
   @Binding var points: Bezier.Points
-  @Binding var time: Float
+  @Binding var time: CGFloat
   @Binding var isToggleOn: Bool
 
   var body: some View {

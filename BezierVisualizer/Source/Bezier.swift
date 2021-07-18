@@ -14,11 +14,32 @@ extension Bezier {
     var c1: CGPoint
     var c2: CGPoint
   }
+
+  struct TimePoints {
+    var p11: CGPoint
+    var p12: CGPoint
+    var p13: CGPoint
+    var p21: CGPoint
+    var p22: CGPoint
+  }
 }
 
 extension Bezier.Points {
   static var zero: Bezier.Points {
     Bezier.Points(p1: .zero, p2: .zero, c1: .zero, c2: .zero)
+  }
+
+  func timePoints(time: CGFloat) -> Bezier.TimePoints {
+    let p11 = Bezier.point(t: time, p1: p1, p2: c1)
+    let p12 = Bezier.point(t: time, p1: c1, p2: c2)
+    let p13 = Bezier.point(t: time, p1: c2, p2: p2)
+    return Bezier.TimePoints(
+      p11: p11,
+      p12: p12,
+      p13: p13,
+      p21: Bezier.point(t: time, p1: p11, p2: p12),
+      p22: Bezier.point(t: time, p1: p12, p2: p13)
+    )
   }
 
   mutating func setPoint(_ point: Bezier.Point, for value: CGPoint) {
