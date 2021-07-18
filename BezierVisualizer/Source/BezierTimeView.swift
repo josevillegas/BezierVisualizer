@@ -2,6 +2,8 @@ import SwiftUI
 import UIKit
 
 struct BezierTimeView: View {
+  @Binding var points: Bezier.Points
+
   var body: some View {
     Text("Bezier Time View")
   }

@@ -2,6 +2,8 @@ import SwiftUI
 import UIKit
 
 struct BezierInfoView: View {
+  @Binding var points: Bezier.Points
+
   @State private var p1: String = ""
   @State private var p2: String = ""
   @State private var c1: String = ""

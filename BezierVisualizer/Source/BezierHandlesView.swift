@@ -2,6 +2,8 @@ import SwiftUI
 import UIKit
 
 struct BezierHandlesView: View {
+  @Binding var points: Bezier.Points
+
   var body: some View {
     Text("Bezier Handles View")
   }

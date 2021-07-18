@@ -2,6 +2,8 @@ import SwiftUI
 import UIKit
 
 struct BezierPathView: View {
+  @Binding var points: Bezier.Points
+
   var body: some View {
     Text("Bezier Path View")
   }
