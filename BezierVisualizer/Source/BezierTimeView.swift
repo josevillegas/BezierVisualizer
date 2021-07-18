@@ -3,9 +3,10 @@ import UIKit
 
 struct BezierTimeView: View {
   @Binding var points: Bezier.Points
+  @Binding var time: Float
 
   var body: some View {
-    Text("Bezier Time View")
+    Text("Time: \(time)")
   }
 }
 
