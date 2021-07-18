@@ -29,6 +29,17 @@ extension Bezier.Points {
     case .c2: c2 = value
     }
   }
+
+  static func values(in size: CGSize) -> Bezier.Points {
+    let halfWidth = min(size.width, size.height) / 4
+    let center = CGPoint(x: size.width / 2, y: size.height / 2)
+    return Bezier.Points(
+      p1: CGPoint(x: center.x - halfWidth, y: center.y + halfWidth),
+      p2: CGPoint(x: center.x + halfWidth, y: center.y + halfWidth),
+      c1: CGPoint(x: center.x - halfWidth, y: center.y - halfWidth),
+      c2: CGPoint(x: center.x + halfWidth, y: center.y - halfWidth)
+    )
+  }
 }
 
 enum Bezier {

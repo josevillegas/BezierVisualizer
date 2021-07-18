@@ -22,14 +22,8 @@ struct BezierVisualizerView: View {
       Divider()
       BezierControlsView(points: $points, time: $time, isToggleOn: $isTimeViewVisible)
         .padding(EdgeInsets(top: 12, leading: 24, bottom: 0, trailing: 24))
-    }.onChange(of: pathViewSize, perform: { value in
-      points = Bezier.Points(
-        p1: CGPoint(x: 100, y: 400),
-        p2: CGPoint(x: 300, y: 400),
-        c1: CGPoint(x: 100, y: 200),
-        c2: CGPoint(x: 300, y: 200)
-      )
-    })
+    }
+      .onChange(of: pathViewSize) { size in points = Bezier.Points.values(in: size) }
   }
 }
 
