@@ -1,4 +1,4 @@
-import UIKit
+import CoreGraphics
 
 enum Bezier {
   enum Point {

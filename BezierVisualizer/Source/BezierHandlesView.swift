@@ -1,5 +1,4 @@
 import SwiftUI
-import UIKit
 
 struct BezierHandlesView: View {
   @Binding var points: Bezier.Points

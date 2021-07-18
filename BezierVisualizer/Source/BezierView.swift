@@ -1,5 +1,4 @@
 import SwiftUI
-import UIKit
 
 struct BezierVisualizerView: View {
   @State private var isTimeViewVisible = false
