@@ -10,24 +10,26 @@ struct BezierVisualizerApp: App {
 }
 
 struct BezierVisualizerView: View {
-  @State private var isTimeViewVisible = false
+  @State private var points: Bezier.Points = .zero
   @State private var time: Float = 0
-
-  @State private var points = Bezier.Points(
-    p1: CGPoint(x: 100, y: 400),
-    p2: CGPoint(x: 300, y: 400),
-    c1: CGPoint(x: 100, y: 200),
-    c2: CGPoint(x: 300, y: 200)
-  )
+  @State private var isTimeViewVisible = false
+  @State private var pathViewSize: CGSize = .zero
 
   var body: some View {
     VStack(spacing: 0) {
-      BezierView(points: $points, time: $time, isTimeViewVisible: $isTimeViewVisible)
+      BezierView(points: $points, time: $time, isTimeViewVisible: $isTimeViewVisible, pathViewSize: $pathViewSize)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
       Divider()
       BezierControlsView(points: $points, time: $time, isToggleOn: $isTimeViewVisible)
         .padding(EdgeInsets(top: 12, leading: 24, bottom: 0, trailing: 24))
-    }
+    }.onChange(of: pathViewSize, perform: { value in
+      points = Bezier.Points(
+        p1: CGPoint(x: 100, y: 400),
+        p2: CGPoint(x: 300, y: 400),
+        c1: CGPoint(x: 100, y: 200),
+        c2: CGPoint(x: 300, y: 200)
+      )
+    })
   }
 }
 
@@ -35,14 +37,23 @@ struct BezierView: View {
   @Binding var points: Bezier.Points
   @Binding var time: Float
   @Binding var isTimeViewVisible: Bool
+  @Binding var pathViewSize: CGSize
 
   var body: some View {
-    ZStack {
-      BezierPathView(points: $points)
-      if isTimeViewVisible {
-        BezierTimeView(points: $points, time: $time)
+    GeometryReader { geometry in
+      ZStack {
+        BezierPathView(points: $points)
+        if isTimeViewVisible {
+          BezierTimeView(points: $points, time: $time)
+        }
+        BezierHandlesView(points: $points)
       }
-      BezierHandlesView(points: $points)
+      .background(Color.yellow)
+      .onAppear {
+        if pathViewSize == .zero {
+          pathViewSize = geometry.size
+        }
+      }
     }
   }
 }
