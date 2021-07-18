@@ -15,12 +15,11 @@ struct BezierView: View {
         }
         BezierHandlesView(points: $points)
       }
-      .background(Color.yellow)
-      .onAppear {
-        if pathViewSize == .zero {
-          pathViewSize = geometry.size
+        .onAppear {
+          if pathViewSize == .zero {
+            pathViewSize = geometry.size
+          }
         }
-      }
     }
   }
 }
@@ -44,6 +43,8 @@ struct BezierControlsView: View {
         Spacer()
       }
     }
+      .padding(EdgeInsets(top: 12, leading: 24, bottom: 0, trailing: 24))
+      .background(Color(UIColor.systemBackground))
   }
 }
 

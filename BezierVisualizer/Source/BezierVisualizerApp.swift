@@ -21,8 +21,8 @@ struct BezierVisualizerView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
       Divider()
       BezierControlsView(points: $points, time: $time, isToggleOn: $isTimeViewVisible)
-        .padding(EdgeInsets(top: 12, leading: 24, bottom: 0, trailing: 24))
     }
+      .background(Color.yellow.ignoresSafeArea(edges: .top))
       .onChange(of: pathViewSize) { size in points = Bezier.Points.values(in: size) }
   }
 }
