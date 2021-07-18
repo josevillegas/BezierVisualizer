@@ -52,10 +52,14 @@ struct BezierPathView: View {
   @Binding var points: Bezier.Points
 
   var body: some View {
+    Path(path)
+      .stroke(Color.black, lineWidth: 1)
+  }
+
+  var path: CGPath {
     let path = UIBezierPath()
     path.move(to: points.p1)
     path.addCurve(to: points.p2, controlPoint1: points.c1, controlPoint2: points.c2)
-    return Path(path.cgPath)
-      .stroke(Color.black, lineWidth: 1)
+    return path.cgPath
   }
 }
