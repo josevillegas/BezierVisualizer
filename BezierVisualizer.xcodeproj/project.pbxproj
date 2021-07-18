@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8249DFAB228E469C0030F95E /* BezierTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8249DFAA228E469C0030F95E /* BezierTimeView.swift */; };
-		8249DFAD228E51130030F95E /* PointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8249DFAC228E51130030F95E /* PointView.swift */; };
 		827141602289190A00D8929E /* BezierHandlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8271415F2289190A00D8929E /* BezierHandlesView.swift */; };
 		8271416222891B0C00D8929E /* BezierInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8271416122891B0C00D8929E /* BezierInfoView.swift */; };
 		828440182287C79900BDC512 /* BezierVisualizerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828440172287C79900BDC512 /* BezierVisualizerApp.swift */; };
@@ -31,7 +30,6 @@
 
 /* Begin PBXFileReference section */
 		8249DFAA228E469C0030F95E /* BezierTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierTimeView.swift; sourceTree = "<group>"; };
-		8249DFAC228E51130030F95E /* PointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointView.swift; sourceTree = "<group>"; };
 		8271415F2289190A00D8929E /* BezierHandlesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierHandlesView.swift; sourceTree = "<group>"; };
 		8271416122891B0C00D8929E /* BezierInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierInfoView.swift; sourceTree = "<group>"; };
 		828440142287C79900BDC512 /* BezierVisualizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BezierVisualizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,7 +71,6 @@
 				8271415F2289190A00D8929E /* BezierHandlesView.swift */,
 				8249DFAA228E469C0030F95E /* BezierTimeView.swift */,
 				8271416122891B0C00D8929E /* BezierInfoView.swift */,
-				8249DFAC228E51130030F95E /* PointView.swift */,
 				82A93287229094C70046C5B3 /* Bezier.swift */,
 			);
 			path = Source;
@@ -226,7 +223,6 @@
 				828440182287C79900BDC512 /* BezierVisualizerApp.swift in Sources */,
 				8249DFAB228E469C0030F95E /* BezierTimeView.swift in Sources */,
 				827141602289190A00D8929E /* BezierHandlesView.swift in Sources */,
-				8249DFAD228E51130030F95E /* PointView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
