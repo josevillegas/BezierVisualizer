@@ -61,22 +61,14 @@ struct BezierControlsView: View {
   }
 }
 
-final class BezierView_ {
-  private let pathView = BezierPathView_()
-  private let timeView = BezierTimeView_()
-  private let handlesView = BezierHandlesView_()
-  private let infoView = BezierInfoView_()
+struct BezierPathView: View {
+  @Binding var points: Bezier.Points
 
-  init() {
-    handlesView.perform = { [weak self] in self?.update($0) }
-  }
-
-  private func update(_ action: BezierHandlesView_.Action) {
-    switch action {
-    case let .handleDidMove(point, value):
-      pathView.points.setPoint(point, for: value)
-      timeView.points.setPoint(point, for: value)
-      infoView.points.setPoint(point, for: value)
-    }
+  var body: some View {
+    let path = UIBezierPath()
+    path.move(to: points.p1)
+    path.addCurve(to: points.p2, controlPoint1: points.c1, controlPoint2: points.c2)
+    return Path(path.cgPath)
+      .stroke(Color.black, lineWidth: 1)
   }
 }
