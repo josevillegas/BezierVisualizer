@@ -1,5 +1,14 @@
 import SwiftUI
 
+@main
+struct BezierVisualizerApp: App {
+  var body: some Scene {
+    WindowGroup {
+      BezierVisualizerView()
+    }
+  }
+}
+
 struct BezierVisualizerView: View {
   @State private var isTimeViewVisible = false
   @State private var time: Float = 0
