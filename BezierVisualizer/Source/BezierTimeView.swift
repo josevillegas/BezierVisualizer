@@ -49,9 +49,7 @@ final class BezierTimeView_: UIView {
       update()
     }
   }
-  var points: Bezier.Points = .zero {
-    didSet { update() }
-  }
+  var points: Bezier.Points = .zero
 
   init() {
     super.init(frame: .zero)
@@ -68,29 +66,18 @@ final class BezierTimeView_: UIView {
 
   private func update() {
     let path = UIBezierPath()
-
-    let p1 = points.p1
-    let p2 = points.p2
-    let c1 = points.c1
-    let c2 = points.c2
-
-    path.move(to: p1)
-    path.addLine(to: c1)
-    path.addLine(to: c2)
-    path.addLine(to: p2)
+    path.move(to: points.p1)
+    path.addLine(to: points.c1)
+    path.addLine(to: points.c2)
+    path.addLine(to: points.p2)
 
     if time > 0 && time < 1 {
-      let p11 = Bezier.point(t: time, p1: p1, p2: c1)
-      let p12 = Bezier.point(t: time, p1: c1, p2: c2)
-      let p13 = Bezier.point(t: time, p1: c2, p2: p2)
-      path.move(to: p11)
-      path.addLine(to: p12)
-      path.addLine(to: p13)
-
-      let p21 = Bezier.point(t: time, p1: p11, p2: p12)
-      let p22 = Bezier.point(t: time, p1: p12, p2: p13)
-      path.move(to: p21)
-      path.addLine(to: p22)
+      let timePoints = points.timePoints(time: time)
+      path.move(to: timePoints.p11)
+      path.addLine(to: timePoints.p12)
+      path.addLine(to: timePoints.p13)
+      path.move(to: timePoints.p21)
+      path.addLine(to: timePoints.p22)
     }
   }
 }
