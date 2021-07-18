@@ -5,7 +5,7 @@ struct BezierTimeView: View {
   @Binding var points: Bezier.Points
   @Binding var time: CGFloat
 
-  @State var pointPosition: CGPoint = .zero
+  @State private var pointPosition: CGPoint = .zero
 
   init(points poimtsBinding: Binding<Bezier.Points>, time timeBinding: Binding<CGFloat>) {
     _points = poimtsBinding
@@ -22,7 +22,7 @@ struct BezierTimeView: View {
       .onChange(of: time) { time in
         if time > 0 && time < 1 {
           let timePoints = points.timePoints(time: time)
-          pointPosition = Bezier.point(t: time, p1: timePoints.p21, p2: timePoints.p22)
+          pointPosition = timePoints.p3
         } else if time <= 0 {
           pointPosition = points.p1
         } else {
