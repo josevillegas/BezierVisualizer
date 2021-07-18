@@ -26,3 +26,27 @@ struct BezierVisualizerView: View {
       .onChange(of: pathViewSize) { size in points = Bezier.Points.values(in: size) }
   }
 }
+
+struct BezierControlsView: View {
+  @Binding var points: Bezier.Points
+  @Binding var time: CGFloat
+  @Binding var isToggleOn: Bool
+
+  var body: some View {
+    VStack(spacing: 16) {
+      HStack(spacing: 24) {
+        Slider(value: $time) {}
+          .disabled(!isToggleOn)
+          .id(isToggleOn)
+        Toggle(isOn: $isToggleOn, label: { Text("") })
+          .labelsHidden()
+      }
+      HStack {
+        BezierInfoView(points: $points)
+        Spacer()
+      }
+    }
+      .padding(EdgeInsets(top: 12, leading: 24, bottom: 0, trailing: 24))
+      .background(Color(UIColor.systemBackground))
+  }
+}

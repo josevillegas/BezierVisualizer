@@ -15,7 +15,7 @@
 		82974E2126A4C61F006C50DE /* BezierVisualizerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82974E2026A4C61F006C50DE /* BezierVisualizerApp.swift */; };
 		82A93288229094C70046C5B3 /* Bezier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A93287229094C70046C5B3 /* Bezier.swift */; };
 		82A932902290D48C0046C5B3 /* BezierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A9328F2290D48C0046C5B3 /* BezierTests.swift */; };
-		82F9D5AE228A4D2500056EDA /* BezierVisualizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F9D5AD228A4D2500056EDA /* BezierVisualizer.swift */; };
+		82F9D5AE228A4D2500056EDA /* BezierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F9D5AD228A4D2500056EDA /* BezierView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +42,7 @@
 		82A9328D2290D48C0046C5B3 /* BezierVisualizerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BezierVisualizerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		82A9328F2290D48C0046C5B3 /* BezierTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierTests.swift; sourceTree = "<group>"; };
 		82A932912290D48C0046C5B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		82F9D5AD228A4D2500056EDA /* BezierVisualizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierVisualizer.swift; sourceTree = "<group>"; };
+		82F9D5AD228A4D2500056EDA /* BezierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,7 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				82974E2026A4C61F006C50DE /* BezierVisualizerApp.swift */,
-				82F9D5AD228A4D2500056EDA /* BezierVisualizer.swift */,
+				82F9D5AD228A4D2500056EDA /* BezierView.swift */,
 				8271415F2289190A00D8929E /* BezierHandlesView.swift */,
 				8249DFAA228E469C0030F95E /* BezierTimeView.swift */,
 				8271416122891B0C00D8929E /* BezierInfoView.swift */,
@@ -218,7 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				82A93288229094C70046C5B3 /* Bezier.swift in Sources */,
-				82F9D5AE228A4D2500056EDA /* BezierVisualizer.swift in Sources */,
+				82F9D5AE228A4D2500056EDA /* BezierView.swift in Sources */,
 				82974E2126A4C61F006C50DE /* BezierVisualizerApp.swift in Sources */,
 				8271416222891B0C00D8929E /* BezierInfoView.swift in Sources */,
 				8249DFAB228E469C0030F95E /* BezierTimeView.swift in Sources */,
