@@ -1,6 +1,6 @@
 import CoreGraphics
 
-enum Bezier {
+extension Bezier {
   enum Point {
     case p1
     case p2
@@ -13,21 +13,25 @@ enum Bezier {
     var p2: CGPoint
     var c1: CGPoint
     var c2: CGPoint
+  }
+}
 
-    static var zero: Points {
-      Points(p1: .zero, p2: .zero, c1: .zero, c2: .zero)
-    }
-
-    mutating func setPoint(_ point: Bezier.Point, for value: CGPoint) {
-      switch point {
-      case .p1: p1 = value
-      case .p2: p2 = value
-      case .c1: c1 = value
-      case .c2: c2 = value
-      }
-    }
+extension Bezier.Points {
+  static var zero: Bezier.Points {
+    Bezier.Points(p1: .zero, p2: .zero, c1: .zero, c2: .zero)
   }
 
+  mutating func setPoint(_ point: Bezier.Point, for value: CGPoint) {
+    switch point {
+    case .p1: p1 = value
+    case .p2: p2 = value
+    case .c1: c1 = value
+    case .c2: c2 = value
+    }
+  }
+}
+
+enum Bezier {
   /// Returns the point between p1 and p2 at time t.
   static func point(t: CGFloat, p1: CGPoint, p2: CGPoint) -> CGPoint {
     var t = t
@@ -50,7 +54,7 @@ enum Bezier {
   /// t should be a value between 0 and 1.
   /// t2 and t3 are precalculated values for t^2 and t^3.
   static func point(t: CGFloat, t2: CGFloat, t3: CGFloat, p1: CGPoint, p2: CGPoint, c1: CGPoint, c2: CGPoint) -> CGPoint {
-    return CGPoint(
+    CGPoint(
       x: point(t: t, t2: t2, t3: t3, p1: p1.x, p2: p2.x, c1: c1.x, c2: c2.x),
       y: point(t: t, t2: t2, t3: t3, p1: p1.y, p2: p2.y, c1: c1.y, c2: c2.y)
     )
