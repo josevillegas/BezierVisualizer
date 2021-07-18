@@ -24,16 +24,6 @@ struct HandleView: View {
   }
 
   var body: some View {
-    let gesture = DragGesture()
-    .onChanged { gesture in
-      dragPosition = CGPoint(
-        x: lastPosition.x + gesture.translation.width,
-        y: lastPosition.y + gesture.translation.height
-      )
-    }
-    .onEnded { gesture in
-      lastPosition = dragPosition
-    }
     ZStack {
       Circle()
         .fill(Color.white)
@@ -43,6 +33,19 @@ struct HandleView: View {
       .frame(width: 10, height: 10)
       .padding(17)
       .position(dragPosition)
-      .gesture(gesture)
+      .gesture(drag)
+  }
+
+  var drag: some Gesture {
+    DragGesture()
+      .onChanged { gesture in
+        dragPosition = CGPoint(
+          x: lastPosition.x + gesture.translation.width,
+          y: lastPosition.y + gesture.translation.height
+        )
+      }
+      .onEnded { gesture in
+        lastPosition = dragPosition
+      }
   }
 }
