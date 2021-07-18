@@ -20,8 +20,12 @@ struct BezierHandlesView: View {
 
 struct HandleView: View {
   var body: some View {
-    Circle()
-      .stroke(Color.red, lineWidth: 2)
+    ZStack {
+      Circle()
+        .fill(Color.white)
+      Circle()
+        .stroke(Color.red, lineWidth: 2)
+    }
       .frame(width: 10, height: 10)
       .padding(17)
   }
