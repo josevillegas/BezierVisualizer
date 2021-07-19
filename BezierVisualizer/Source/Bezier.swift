@@ -16,12 +16,12 @@ enum Bezier {
   }
 
   struct TimePoints {
-    var p11: CGPoint
-    var p12: CGPoint
-    var p13: CGPoint
-    var p21: CGPoint
-    var p22: CGPoint
-    var p3: CGPoint
+    var p1c1: CGPoint
+    var c1c2: CGPoint
+    var c2p2: CGPoint
+    var p1c1c2: CGPoint
+    var c1c2p2: CGPoint
+    var timePoint: CGPoint
   }
 }
 
@@ -59,13 +59,13 @@ extension Bezier.Points {
 extension Bezier.TimePoints {
   init(points: Bezier.Points, time: CGFloat) {
     let time = time.clampedToOne()
-    let p11 = Bezier.point(t: time, p1: points.p1, p2: points.c1)
-    let p12 = Bezier.point(t: time, p1: points.c1, p2: points.c2)
-    let p13 = Bezier.point(t: time, p1: points.c2, p2: points.p2)
-    let p21 = Bezier.point(t: time, p1: p11, p2: p12)
-    let p22 = Bezier.point(t: time, p1: p12, p2: p13)
-    let p3 = Bezier.point(t: time, p1: p21, p2: p22)
-    self.init(p11: p11, p12: p12, p13: p13, p21: p21, p22: p22, p3: p3)
+    let p1c1 = Bezier.point(t: time, p1: points.p1, p2: points.c1)
+    let c1c2 = Bezier.point(t: time, p1: points.c1, p2: points.c2)
+    let c2p2 = Bezier.point(t: time, p1: points.c2, p2: points.p2)
+    let p1c1c2 = Bezier.point(t: time, p1: p1c1, p2: c1c2)
+    let c1c2p2 = Bezier.point(t: time, p1: c1c2, p2: c2p2)
+    let timePoint = Bezier.point(t: time, p1: p1c1c2, p2: c1c2p2)
+    self.init(p1c1: p1c1, c1c2: c1c2, c2p2: c2p2, p1c1c2: p1c1c2, c1c2p2: c1c2p2, timePoint: timePoint)
   }
 }
 
