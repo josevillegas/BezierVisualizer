@@ -99,23 +99,20 @@ extension Bezier {
   }
 
   static private func point(clamped t: CGFloat, p1: CGPoint, p2: CGPoint, c1: CGPoint, c2: CGPoint) -> CGPoint {
-    point(t: t, t2: pow(t, 2), t3:  pow(t, 3), p1: p1, p2: p2, c1: c1, c2: c2)
+    point(clamped: t, t2: pow(t, 2), t3:  pow(t, 3), p1: p1, p2: p2, c1: c1, c2: c2)
   }
 
-  /// Returns the bezier point at time t.
-  /// t should be a value between 0 and 1.
   /// t2 and t3 are precalculated values for t^2 and t^3.
-  static func point(t: CGFloat, t2: CGFloat, t3: CGFloat, p1: CGPoint, p2: CGPoint, c1: CGPoint, c2: CGPoint) -> CGPoint {
+  static private func point(clamped t: CGFloat, t2: CGFloat, t3: CGFloat, p1: CGPoint, p2: CGPoint, c1: CGPoint, c2: CGPoint) -> CGPoint {
     CGPoint(
-      x: point(t: t, t2: t2, t3: t3, p1: p1.x, p2: p2.x, c1: c1.x, c2: c2.x),
-      y: point(t: t, t2: t2, t3: t3, p1: p1.y, p2: p2.y, c1: c1.y, c2: c2.y)
+      x: point(clamped: t, t2: t2, t3: t3, p1: p1.x, p2: p2.x, c1: c1.x, c2: c2.x),
+      y: point(clamped: t, t2: t2, t3: t3, p1: p1.y, p2: p2.y, c1: c1.y, c2: c2.y)
     )
   }
 
   /// Returns the bezier point at time t for a given axis.
-  /// t should be a value between 0 and 1.
   /// t2 and t3 are precalculated values for t² and t³.
-  static func point(t: CGFloat, t2: CGFloat, t3: CGFloat, p1: CGFloat, p2: CGFloat, c1: CGFloat, c2: CGFloat) -> CGFloat {
+  static private func point(clamped t: CGFloat, t2: CGFloat, t3: CGFloat, p1: CGFloat, p2: CGFloat, c1: CGFloat, c2: CGFloat) -> CGFloat {
     // See derivation below.
     p1 - 3 * t * (p1 - c1) + 3 * t2 * (p1 - 2 * c1 + c2) - t3 * (p1 - 3 * c1 + 3 * c2 - p2)
   }
