@@ -1,19 +1,18 @@
 import SwiftUI
 
 struct BezierView: View {
-  @Binding var points: Bezier.Points
-  @Binding var time: CGFloat
+  @Binding var bezierValues: Bezier.Values
   @Binding var isTimeViewVisible: Bool
   @Binding var pathViewSize: CGSize
 
   var body: some View {
     GeometryReader { geometry in
       ZStack {
-        BezierPathView(points: $points)
+        BezierPathView(points: $bezierValues.points)
         if isTimeViewVisible {
-          BezierTimeView(points: $points, time: $time)
+          BezierTimeView(bezierValues: $bezierValues)
         }
-        BezierHandlesView(points: $points)
+        BezierHandlesView(points: $bezierValues.points)
       }
         .onAppear {
           if pathViewSize == .zero {

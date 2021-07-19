@@ -1,6 +1,11 @@
 import CoreGraphics
 
 enum Bezier {
+  struct Values {
+    var points: Points
+    var time: CGFloat
+  }
+
   enum Point {
     case p1
     case p2
@@ -22,6 +27,12 @@ enum Bezier {
     var p1c1c2: CGPoint
     var c1c2p2: CGPoint
     var timePoint: CGPoint
+  }
+}
+
+extension Bezier.Values {
+  static var zero: Bezier.Values {
+    Bezier.Values(points: .zero, time: 0)
   }
 }
 

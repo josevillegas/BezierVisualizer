@@ -7,11 +7,11 @@ struct BezierInfoView: View {
 
   var body: some View {
     VStack(alignment: .leading, spacing: 6) {
-      InfoRowView(title: "P1", value: formatter.format(points.p1))
-      InfoRowView(title: "P2", value: formatter.format(points.p2))
-      InfoRowView(title: "C1", value: formatter.format(points.c1))
-      InfoRowView(title: "C2", value: formatter.format(points.c2))
-      InfoRowView(title: "L", value: formatter.format(Bezier.length(points: points, intervals: 2)))
+      InfoRowView(title: "point 1:", value: formatter.format(points.p1))
+      InfoRowView(title: "point 2:", value: formatter.format(points.p2))
+      InfoRowView(title: "control 1:", value: formatter.format(points.c1))
+      InfoRowView(title: "control 2:", value: formatter.format(points.c2))
+      InfoRowView(title: "length:", value: formatter.format(Bezier.length(points: points, intervals: 2)))
     }
   }
 }
@@ -32,11 +32,12 @@ struct BezierInfoFormatter {
   private let formatter = NumberFormatter()
 
   init() {
+    formatter.minimumFractionDigits = 2
     formatter.maximumFractionDigits = 2
   }
 
   func format(_ point: CGPoint) -> String {
-    "(\(formatter.string(for: point.x) ?? "0"), \(formatter.string(for: point.y) ?? "0"))"
+    "(\(format(point.x)), \(format(point.y)))"
   }
 
   func format(_ value: CGFloat) -> String {

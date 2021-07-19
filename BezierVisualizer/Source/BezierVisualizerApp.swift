@@ -10,39 +10,37 @@ struct BezierVisualizerApp: App {
 }
 
 struct BezierVisualizerView: View {
-  @State private var points: Bezier.Points = .zero
-  @State private var time: CGFloat = 0
+  @State private var bezierValues: Bezier.Values = .zero
   @State private var isTimeViewVisible = false
   @State private var pathViewSize: CGSize = .zero
 
   var body: some View {
     VStack(spacing: 0) {
-      BezierView(points: $points, time: $time, isTimeViewVisible: $isTimeViewVisible, pathViewSize: $pathViewSize)
+      BezierView(bezierValues: $bezierValues, isTimeViewVisible: $isTimeViewVisible, pathViewSize: $pathViewSize)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
       Divider()
-      BezierControlsView(points: $points, time: $time, isToggleOn: $isTimeViewVisible)
+      BezierControlsView(bezierValues: $bezierValues, isToggleOn: $isTimeViewVisible)
     }
       .background(Color.yellow.ignoresSafeArea(edges: .top))
-      .onChange(of: pathViewSize) { size in points = Bezier.Points.square(in: size) }
+      .onChange(of: pathViewSize) { size in bezierValues.points = Bezier.Points.square(in: size) }
   }
 }
 
 struct BezierControlsView: View {
-  @Binding var points: Bezier.Points
-  @Binding var time: CGFloat
+  @Binding var bezierValues: Bezier.Values
   @Binding var isToggleOn: Bool
 
   var body: some View {
     VStack(spacing: 16) {
       HStack(spacing: 24) {
-        Slider(value: $time) {}
+        Slider(value: $bezierValues.time) {}
           .disabled(!isToggleOn)
           .id(isToggleOn)
         Toggle(isOn: $isToggleOn, label: { Text("") })
           .labelsHidden()
       }
       HStack {
-        BezierInfoView(points: $points)
+        BezierInfoView(points: $bezierValues.points)
         Spacer()
       }
     }

@@ -1,32 +1,28 @@
 import SwiftUI
 
 struct BezierTimeView: View {
-  @Binding var points: Bezier.Points
-  @Binding var time: CGFloat
-
+  @Binding var bezierValues: Bezier.Values
   @State private var pointPosition: CGPoint = .zero
 
-  init(points poimtsBinding: Binding<Bezier.Points>, time timeBinding: Binding<CGFloat>) {
-    _points = poimtsBinding
-    _time = timeBinding
-    _pointPosition = State(initialValue: Bezier.TimePoints(points: points, time: time).timePoint)
+  init(bezierValues bezierValuesBinding: Binding<Bezier.Values>) {
+    _bezierValues = bezierValuesBinding
+    _pointPosition = State(initialValue: Bezier.TimePoints(points: bezierValues.points, time: bezierValues.time).timePoint)
   }
 
   var body: some View {
     ZStack {
-      BezierTimePathView(points: $points, time: $time)
+      BezierTimePathView(bezierValues: $bezierValues)
       PointView()
         .position(pointPosition)
     }
-      .onChange(of: time) { time in
-        pointPosition = Bezier.TimePoints(points: points, time: time).timePoint
+      .onChange(of: bezierValues.time) { time in
+        pointPosition = Bezier.TimePoints(points: bezierValues.points, time: bezierValues.time).timePoint
       }
   }
 }
 
 struct BezierTimePathView: View {
-  @Binding var points: Bezier.Points
-  @Binding var time: CGFloat
+  @Binding var bezierValues: Bezier.Values
 
   var body: some View {
     Path(path)
@@ -34,6 +30,8 @@ struct BezierTimePathView: View {
   }
 
   var path: CGPath {
+    let points = bezierValues.points
+    let time = bezierValues.time
     let path = UIBezierPath()
     path.move(to: points.p1)
     path.addLine(to: points.c1)
