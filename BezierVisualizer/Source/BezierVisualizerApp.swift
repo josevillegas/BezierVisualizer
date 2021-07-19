@@ -53,15 +53,14 @@ struct BezierInfoView: View {
   @Binding var points: Bezier.Points
 
   private let formatter = BezierFormatter()
+  private let labels = ["point 1", "point 2", "control 1", "control 2", "length"]
 
   var body: some View {
     HStack(spacing: 18) {
       VStack(alignment: .leading, spacing: 6) {
-        Text("point 1:")
-        Text("point 2:")
-        Text("control 1:")
-        Text("control 2:")
-        Text("length")
+        ForEach(labels, id: \.self) { value in
+          Text(value + ":")
+        }
       }
       VStack(alignment: .leading, spacing: 6) {
         Text(formatter.format(points.p1))
