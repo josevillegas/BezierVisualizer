@@ -1,19 +1,12 @@
 import SwiftUI
 
-struct BezierHandlesView: View {
-  @Binding var points: Bezier.Points
-
-  var body: some View {
-    ZStack {
-      HandleView(position: $points.p1)
-      HandleView(position: $points.p2)
-      HandleView(position: $points.c1)
-      HandleView(position: $points.c2)
-    }
+extension View {
+  func draggable(position: Binding<CGPoint>) -> some View {
+    modifier(Draggable(position: position))
   }
 }
 
-struct HandleView: View {
+struct Draggable: ViewModifier {
   @Binding var dragPosition: CGPoint
 
   @State private var isDragging = false
@@ -24,15 +17,8 @@ struct HandleView: View {
     lastPosition = position.wrappedValue
   }
 
-  var body: some View {
-    ZStack {
-      Circle()
-        .fill(Color.white)
-      Circle()
-        .stroke(Color.red, lineWidth: 2)
-    }
-      .frame(width: 10, height: 10)
-      .padding(17)
+  func body(content: Self.Content) -> some View {
+    content
       .position(dragPosition)
       .gesture(drag)
       .onChange(of: dragPosition) { value in

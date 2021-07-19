@@ -38,3 +38,32 @@ struct BezierPathView: View {
     return path.cgPath
   }
 }
+
+struct BezierHandlesView: View {
+  @Binding var points: Bezier.Points
+
+  var body: some View {
+    ZStack {
+      HandleView(dragPosition: $points.p1)
+      HandleView(dragPosition: $points.p2)
+      HandleView(dragPosition: $points.c1)
+      HandleView(dragPosition: $points.c2)
+    }
+  }
+}
+
+struct HandleView: View {
+  @Binding var dragPosition: CGPoint
+
+  var body: some View {
+    ZStack {
+      Circle()
+        .fill(Color.white)
+      Circle()
+        .stroke(Color.red, lineWidth: 2)
+    }
+      .frame(width: 10, height: 10)
+      .padding(17)
+      .draggable(position: $dragPosition)
+  }
+}

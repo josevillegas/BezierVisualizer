@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8249DFAB228E469C0030F95E /* BezierTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8249DFAA228E469C0030F95E /* BezierTimeView.swift */; };
-		827141602289190A00D8929E /* BezierHandlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8271415F2289190A00D8929E /* BezierHandlesView.swift */; };
+		8268494C26A54ADF00BAE6B1 /* Draggable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8268494B26A54ADF00BAE6B1 /* Draggable.swift */; };
 		8284401F2287C79A00BDC512 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8284401E2287C79A00BDC512 /* Assets.xcassets */; };
 		828440222287C79A00BDC512 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 828440202287C79A00BDC512 /* LaunchScreen.storyboard */; };
 		82974E2126A4C61F006C50DE /* BezierVisualizerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82974E2026A4C61F006C50DE /* BezierVisualizerApp.swift */; };
@@ -30,7 +30,7 @@
 
 /* Begin PBXFileReference section */
 		8249DFAA228E469C0030F95E /* BezierTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierTimeView.swift; sourceTree = "<group>"; };
-		8271415F2289190A00D8929E /* BezierHandlesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierHandlesView.swift; sourceTree = "<group>"; };
+		8268494B26A54ADF00BAE6B1 /* Draggable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Draggable.swift; sourceTree = "<group>"; };
 		828440142287C79900BDC512 /* BezierVisualizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BezierVisualizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8284401E2287C79A00BDC512 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		828440212287C79A00BDC512 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -68,9 +68,9 @@
 			children = (
 				82974E2026A4C61F006C50DE /* BezierVisualizerApp.swift */,
 				82F9D5AD228A4D2500056EDA /* BezierView.swift */,
-				8271415F2289190A00D8929E /* BezierHandlesView.swift */,
 				8249DFAA228E469C0030F95E /* BezierTimeView.swift */,
 				82A93287229094C70046C5B3 /* Bezier.swift */,
+				8268494B26A54ADF00BAE6B1 /* Draggable.swift */,
 				82974E2226A51A6A006C50DE /* Extensions.swift */,
 			);
 			path = Source;
@@ -219,9 +219,9 @@
 			files = (
 				82A93288229094C70046C5B3 /* Bezier.swift in Sources */,
 				82F9D5AE228A4D2500056EDA /* BezierView.swift in Sources */,
+				8268494C26A54ADF00BAE6B1 /* Draggable.swift in Sources */,
 				82974E2126A4C61F006C50DE /* BezierVisualizerApp.swift in Sources */,
 				8249DFAB228E469C0030F95E /* BezierTimeView.swift in Sources */,
-				827141602289190A00D8929E /* BezierHandlesView.swift in Sources */,
 				82974E2326A51A6A006C50DE /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
