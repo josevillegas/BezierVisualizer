@@ -49,14 +49,19 @@ extension Bezier.Points {
     }
   }
 
-  static func values(in size: CGSize) -> Bezier.Points {
-    let halfWidth = min(size.width, size.height) / 4
-    let center = CGPoint(x: size.width / 2, y: size.height / 2)
-    return Bezier.Points(
-      p1: CGPoint(x: center.x - halfWidth, y: center.y + halfWidth),
-      p2: CGPoint(x: center.x + halfWidth, y: center.y + halfWidth),
-      c1: CGPoint(x: center.x - halfWidth, y: center.y - halfWidth),
-      c2: CGPoint(x: center.x + halfWidth, y: center.y - halfWidth)
+  static func values(in size: CGSize, ratio: CGFloat = 0.5) -> Bezier.Points {
+    points(
+      center: CGPoint(x: size.width / 2, y: size.height / 2),
+      apothem: min(size.width, size.height) * ratio / 2
+    )
+  }
+
+  static func points(center: CGPoint, apothem: CGFloat) -> Bezier.Points {
+    Bezier.Points(
+      p1: CGPoint(x: center.x - apothem, y: center.y + apothem),
+      p2: CGPoint(x: center.x + apothem, y: center.y + apothem),
+      c1: CGPoint(x: center.x - apothem, y: center.y - apothem),
+      c2: CGPoint(x: center.x + apothem, y: center.y - apothem)
     )
   }
 }
@@ -64,20 +69,23 @@ extension Bezier.Points {
 enum Bezier {
   /// Returns the point between p1 and p2 at time t.
   static func point(t: CGFloat, p1: CGPoint, p2: CGPoint) -> CGPoint {
-    var t = t
-    if t < 0 { t = 0 }
-    if t > 1 { t = 1 }
-    return CGPoint(x: p1.x + t * (p2.x - p1.x), y: p1.y + t * (p2.y - p1.y))
+    point(clamped: t.clampedToOne(), p1: p1, p2: p2)
+  }
+
+  static private func point(clamped t: CGFloat, p1: CGPoint, p2: CGPoint) -> CGPoint {
+    CGPoint(
+      x: p1.x + t * (p2.x - p1.x),
+      y: p1.y + t * (p2.y - p1.y)
+    )
   }
 
   /// Returns the bezier point at time t.
   static func point(t: CGFloat, p1: CGPoint, p2: CGPoint, c1: CGPoint, c2: CGPoint) -> CGPoint {
-    var t = t
-    if t < 0 { t = 0 }
-    if t > 1 { t = 1 }
-    let t2 = pow(t, 2)
-    let t3 = pow(t, 3)
-    return point(t: t, t2: t2, t3: t3, p1: p1, p2: p2, c1: c1, c2: c2)
+    point(clamped: t.clampedToOne(), p1: p1, p2: p2, c1: c1, c2: c2)
+  }
+
+  static private func point(clamped t: CGFloat, p1: CGPoint, p2: CGPoint, c1: CGPoint, c2: CGPoint) -> CGPoint {
+    point(t: t, t2: pow(t, 2), t3:  pow(t, 3), p1: p1, p2: p2, c1: c1, c2: c2)
   }
 
   /// Returns the bezier point at time t.
@@ -108,9 +116,8 @@ enum Bezier {
     guard intervals > 1 else { return 0 }
     let values = intervalValues(withCount: intervals)
     let points = intervalPoints(p1: p1, p2: p2, c1: c1, c2: c2, intervals: values)
-    let pairs = self.pairs(points)
-    return pairs.reduce(0) { (result, points) -> CGFloat in
-      return result + distance(points.0, points.1)
+    return pairs(points).reduce(0) { (result, points) -> CGFloat in
+      result + distance(points.0, points.1)
     }
   }
 
