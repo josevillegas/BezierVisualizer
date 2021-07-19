@@ -1,7 +1,7 @@
 import CoreGraphics
 
 enum Bezier {
-  struct Values {
+  struct Values: Equatable {
     var points: Points
     var time: CGFloat
   }
@@ -13,7 +13,7 @@ enum Bezier {
     case c2
   }
 
-  struct Points {
+  struct Points: Equatable {
     var p1: CGPoint
     var p2: CGPoint
     var c1: CGPoint

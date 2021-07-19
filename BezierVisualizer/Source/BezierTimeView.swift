@@ -15,7 +15,7 @@ struct BezierTimeView: View {
       PointView()
         .position(pointPosition)
     }
-      .onChange(of: bezierValues.time) { time in
+      .onChange(of: bezierValues) { bezierValues in
         pointPosition = Bezier.TimePoints(points: bezierValues.points, time: bezierValues.time).timePoint
       }
   }
