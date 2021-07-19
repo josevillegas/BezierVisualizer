@@ -164,12 +164,20 @@ extension Bezier {
   }
 }
 
+extension FloatingPoint {
+  func clampedToOne() -> Self {
+    max(0, min(1, self))
+  }
+}
+
 /*
+
+Derivation
 
 Given P1, P2, C1, C2
 where A1, A2, A3 are points between the lines connecting P1, P2, C1 and C2
-B1, B2 are points between the lines connecting A1, A2 and A3
-C is a point between the line connecting B1 and B2, the final bezier point
+  B1, B2 are points between the lines connecting A1, A2 and A3
+  C is a point between the line connecting B1 and B2, the final bezier point
 
 A1 = P1 + T * (C1 - P1)
 A2 = C1 + T * (C2 - C1)

@@ -48,25 +48,3 @@ struct BezierControlsView: View {
       .background(Color(UIColor.systemBackground))
   }
 }
-
-struct BezierInfoView: View {
-  @Binding var points: Bezier.Points
-
-  private let formatter = BezierFormatter()
-  private let labels = ["point 1", "point 2", "control 1", "control 2", "length"]
-
-  var body: some View {
-    HStack(spacing: 18) {
-      VStack(alignment: .leading, spacing: 6) {
-        ForEach(labels, id: \.self) { Text($0 + ":") }
-      }
-      VStack(alignment: .leading, spacing: 6) {
-        Text(formatter.format(points.p1))
-        Text(formatter.format(points.p2))
-        Text(formatter.format(points.c1))
-        Text(formatter.format(points.c2))
-        Text(formatter.format(Bezier.length(points: points, intervals: 2)))
-      }
-    }
-  }
-}
