@@ -23,7 +23,7 @@ struct BezierVisualizerView: View {
       BezierControlsView(points: $points, time: $time, isToggleOn: $isTimeViewVisible)
     }
       .background(Color.yellow.ignoresSafeArea(edges: .top))
-      .onChange(of: pathViewSize) { size in points = Bezier.Points.values(in: size) }
+      .onChange(of: pathViewSize) { size in points = Bezier.Points.square(in: size) }
   }
 }
 

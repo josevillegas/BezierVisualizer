@@ -1,6 +1,6 @@
 import CoreGraphics
 
-extension Bezier {
+enum Bezier {
   enum Point {
     case p1
     case p2
@@ -30,16 +30,6 @@ extension Bezier.Points {
     Bezier.Points(p1: .zero, p2: .zero, c1: .zero, c2: .zero)
   }
 
-  func timePoints(time: CGFloat) -> Bezier.TimePoints {
-    let p11 = Bezier.point(t: time, p1: p1, p2: c1)
-    let p12 = Bezier.point(t: time, p1: c1, p2: c2)
-    let p13 = Bezier.point(t: time, p1: c2, p2: p2)
-    let p21 = Bezier.point(t: time, p1: p11, p2: p12)
-    let p22 = Bezier.point(t: time, p1: p12, p2: p13)
-    let p3 = Bezier.point(t: time, p1: p21, p2: p22)
-    return Bezier.TimePoints(p11: p11, p12: p12, p13: p13, p21: p21, p22: p22, p3: p3)
-  }
-
   mutating func setPoint(_ point: Bezier.Point, for value: CGPoint) {
     switch point {
     case .p1: p1 = value
@@ -49,7 +39,7 @@ extension Bezier.Points {
     }
   }
 
-  static func values(in size: CGSize, ratio: CGFloat = 0.5) -> Bezier.Points {
+  static func square(in size: CGSize, ratio: CGFloat = 0.5) -> Bezier.Points {
     points(
       center: CGPoint(x: size.width / 2, y: size.height / 2),
       apothem: min(size.width, size.height) * ratio / 2
@@ -66,7 +56,20 @@ extension Bezier.Points {
   }
 }
 
-enum Bezier {
+extension Bezier.TimePoints {
+  init(points: Bezier.Points, time: CGFloat) {
+    let time = time.clampedToOne()
+    let p11 = Bezier.point(t: time, p1: points.p1, p2: points.c1)
+    let p12 = Bezier.point(t: time, p1: points.c1, p2: points.c2)
+    let p13 = Bezier.point(t: time, p1: points.c2, p2: points.p2)
+    let p21 = Bezier.point(t: time, p1: p11, p2: p12)
+    let p22 = Bezier.point(t: time, p1: p12, p2: p13)
+    let p3 = Bezier.point(t: time, p1: p21, p2: p22)
+    self.init(p11: p11, p12: p12, p13: p13, p21: p21, p22: p22, p3: p3)
+  }
+}
+
+extension Bezier {
   /// Returns the point between p1 and p2 at time t.
   static func point(t: CGFloat, p1: CGPoint, p2: CGPoint) -> CGPoint {
     point(clamped: t.clampedToOne(), p1: p1, p2: p2)
