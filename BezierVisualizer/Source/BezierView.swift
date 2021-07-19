@@ -13,7 +13,12 @@ struct BezierView: View {
         if isTimeViewVisible {
           BezierTimeView(bezierValues: $bezierValues)
         }
-        BezierHandlesView(points: $bezierValues.points)
+        ZStack {
+          HandleView(dragPosition: $bezierValues.points.p1)
+          HandleView(dragPosition: $bezierValues.points.p2)
+          HandleView(dragPosition: $bezierValues.points.c1)
+          HandleView(dragPosition: $bezierValues.points.c2)
+        }
       }
         .onAppear {
           if pathViewSize == .zero {
@@ -29,19 +34,6 @@ struct BezierView: View {
     path.move(to: points.p1)
     path.addCurve(to: points.p2, controlPoint1: points.c1, controlPoint2: points.c2)
     return path.cgPath
-  }
-}
-
-struct BezierHandlesView: View {
-  @Binding var points: Bezier.Points
-
-  var body: some View {
-    ZStack {
-      HandleView(dragPosition: $points.p1)
-      HandleView(dragPosition: $points.p2)
-      HandleView(dragPosition: $points.c1)
-      HandleView(dragPosition: $points.c2)
-    }
   }
 }
 
