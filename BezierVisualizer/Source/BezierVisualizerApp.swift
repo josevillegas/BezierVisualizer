@@ -58,9 +58,7 @@ struct BezierInfoView: View {
   var body: some View {
     HStack(spacing: 18) {
       VStack(alignment: .leading, spacing: 6) {
-        ForEach(labels, id: \.self) { value in
-          Text(value + ":")
-        }
+        ForEach(labels, id: \.self) { Text($0 + ":") }
       }
       VStack(alignment: .leading, spacing: 6) {
         Text(formatter.format(points.p1))
