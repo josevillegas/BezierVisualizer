@@ -3,7 +3,7 @@ import SwiftUI
 struct BezierView: View {
   @Binding var bezierValues: Bezier.Values
   @Binding var isTimeViewVisible: Bool
-  @Binding var pathViewSize: CGSize
+  @Binding var initialPathViewSize: CGSize
 
   var body: some View {
     GeometryReader { geometry in
@@ -21,8 +21,8 @@ struct BezierView: View {
         }
       }
         .onAppear {
-          if pathViewSize == .zero {
-            pathViewSize = geometry.size
+          if initialPathViewSize == .zero {
+            initialPathViewSize = geometry.size
           }
         }
     }

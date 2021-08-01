@@ -12,17 +12,17 @@ struct BezierVisualizerApp: App {
 struct BezierVisualizerView: View {
   @State private var bezierValues: Bezier.Values = .zero
   @State private var isTimeViewVisible = false
-  @State private var pathViewSize: CGSize = .zero
+  @State private var initialPathViewSize: CGSize = .zero
 
   var body: some View {
     VStack(spacing: 0) {
-      BezierView(bezierValues: $bezierValues, isTimeViewVisible: $isTimeViewVisible, pathViewSize: $pathViewSize)
+      BezierView(bezierValues: $bezierValues, isTimeViewVisible: $isTimeViewVisible, initialPathViewSize: $initialPathViewSize)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
       Divider()
       BezierControlsView(bezierValues: $bezierValues, isToggleOn: $isTimeViewVisible)
     }
       .background(Color.yellow.ignoresSafeArea(edges: .top))
-      .onChange(of: pathViewSize) { size in bezierValues.points = Bezier.Points.square(in: size) }
+      .onChange(of: initialPathViewSize) { size in bezierValues.points = Bezier.Points.square(in: size) }
   }
 }
 
